@@ -8,14 +8,23 @@ import java.util.Scanner;
 
 public class ccwc {
 
+    /*
+    -l - count the number of lines in a file
+    -c - count the number of bytes in a file
+    -w - count the number of words in a file
+    -m - count the number of characters in a file
+
+         */
+
     /**
      * A function which prints output for a given specific input
+     *
      * @param input
      * @param flag
      */
 
-    public static void executeToStdInput(String input, String flag){
-        switch (flag){
+    public static void executeToStdInput(String input, String flag) {
+        switch (flag) {
             case "-l" -> System.out.println(input.split("\\n").length);
             case "-c" -> System.out.println(input.getBytes().length);
             case "-w" -> System.out.println(input.split("\\s").length);
@@ -27,21 +36,23 @@ public class ccwc {
 
     /**
      * A function which prints output for a given specific filepath
+     *
      * @param filePath
      * @param flag
      * @throws IOException
      */
     public static void executeToFile(Path filePath, String flag) throws IOException {
-        switch (flag){
-            case "-l" -> System.out.println(Files.readAllLines(filePath).size()+" "+filePath);
-            case "-c" -> System.out.println(Files.readAllBytes(filePath).length+" "+filePath);
-            case "-w" -> System.out.println(Files.readString(filePath).split("\\s+").length+" "+filePath);
-            case "-m" -> System.out.println(Files.readString(filePath).length()+" "+filePath);
+        switch (flag) {
+            case "-l" -> System.out.println(Files.readAllLines(filePath).size() + " " + filePath);
+            case "-c" -> System.out.println(Files.readAllBytes(filePath).length + " " + filePath);
+            case "-w" -> System.out.println(Files.readString(filePath).split("\\s+").length + " " + filePath);
+            case "-m" -> System.out.println(Files.readString(filePath).length() + " " + filePath);
             default ->
                     System.out.println(Files.readAllLines(filePath).size() + " " + Files.readString(filePath).split("\\s+").length + " " + Files.readAllBytes(filePath).length + " " + filePath);
         }
     }
-    public static void main(String[] args) throws IOException{
+
+    public static void main(String[] args) throws IOException {
 
         if (args.length == 0) { //when only std input is present
             Scanner scanner = new Scanner(System.in);
@@ -63,5 +74,5 @@ public class ccwc {
             executeToFile(filePath, args[0]);
         }
     }
-    }
+}
 
